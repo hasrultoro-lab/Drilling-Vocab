@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drilling Tenses: Family & Shapes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #4F46E5;
+            --primary-light: #EEF2FF;
+            --secondary: #F59E0B;
+            --accent: #10B981;
+            --bg-gradient: linear-gradient(135deg, #E0E7FF 0%, #FEF3C7 100%);
+            --card-bg: #FFFFFF;
+            --text-dark: #1E293B;
+            --text-muted: #64748B;
+            --border-color: #CBD5E1;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background: var(--bg-gradient);
+            color: var(--text-dark);
+            min-height: 100vh;
+            padding: 24px 16px 60px;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+
+        .header-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            padding: 28px 32px;
+            box-shadow: 0 10px 25px rgba(79, 70, 229, 0.1);
+            margin-bottom: 24px;
+            border-top: 6px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            font-weight: 800;
+            font-size: 0.85rem;
+            padding: 6px 14px;
+            border-radius: 50px;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+
+        h1 {
+            font-size: 1.85rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: var(--text-muted);
+            font-size: 1rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .student-info {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            background: #F8FAFC;
+            padding: 16px;
+            border-radius: 14px;
+            border: 1px solid #E2E8F0;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 10px 14px;
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.15);
+        }
+
+        .toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .progress-pill {
+            background: var(--card-bg);
+            padding: 10px 18px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            color: var(--primary);
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            border: none;
+            padding: 10px 18px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        button:active {
+            transform: scale(0.97);
+        }
+
+        .btn-tutor {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(79, 70, 229, 0.25);
+        }
+
+        .btn-tutor:hover {
+            background: #4338CA;
+        }
+
+        .btn-reset {
+            background: #FEE2E2;
+            color: #DC2626;
+        }
+
+        .btn-reset:hover {
+            background: #FECACA;
+        }
+
+        .btn-print {
+            background: #E2E8F0;
+            color: var(--text-dark);
+        }
+
+        .btn-print:hover {
+            background: #CBD5E1;
+        }
+
+        .question-card {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 22px 26px;
+            margin-bottom: 18px;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.05);
+            border-left: 6px solid var(--secondary);
+            transition: transform 0.2s;
+        }
+
+        .question-card:hover {
+            transform: translateY(-2px);
+        }
+
+        .q-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            margin-bottom: 14px;
+        }
+
+        .q-number {
+            background: var(--secondary);
+            color: white;
+            font-weight: 800;
+            min-width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+
+        .q-text {
+            font-size: 1.08rem;
+            font-weight: 700;
+            line-height: 1.5;
+            color: var(--text-dark);
+            padding-top: 3px;
+        }
+
+        .answer-box {
+            width: 100%;
+            min-height: 68px;
+            padding: 12px 16px;
+            border: 2px solid #E2E8F0;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            background: #F8FAFC;
+            resize: vertical;
+            transition: all 0.2s;
+        }
+
+        .answer-box:focus {
+            outline: none;
+            border-color: var(--primary);
+            background: #FFFFFF;
+            box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.12);
+        }
+
+        .tutor-key {
+            display: none;
+            margin-top: 14px;
+            padding: 14px 16px;
+            background: #ECFDF5;
+            border: 1.5px solid #A7F3D0;
+            border-radius: 12px;
+            animation: fadeIn 0.25s ease-in-out;
+        }
+
+        .tutor-key.visible {
+            display: block;
+        }
+
+        .tense-tag {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            font-size: 0.78rem;
+            font-weight: 800;
+            padding: 3px 10px;
+            border-radius: 6px;
+            margin-bottom: 6px;
+            text-transform: uppercase;
+        }
+
+        .key-sentence {
+            font-size: 0.98rem;
+            font-weight: 700;
+            color: #065F46;
+            line-height: 1.45;
+        }
+
+        .tutor-panel {
+            background: var(--card-bg);
+            border-radius: 18px;
+            padding: 24px 28px;
+            margin-top: 28px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
+            border-top: 5px solid var(--accent);
+        }
+
+        .tutor-panel h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 14px;
+            color: var(--text-dark);
+        }
+
+        .tutor-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 16px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-4px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 640px) {
+            .student-info, .tutor-grid {
+                grid-template-columns: 1fr;
+            }
+            h1 {
+                font-size: 1.5rem;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .toolbar, .btn-group {
+                display: none !important;
+            }
+            .question-card, .header-card, .tutor-panel {
+                box-shadow: none;
+                border: 1px solid #CBD5E1;
+                break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- Header -->
+    <div class="header-card">
+        <span class="header-badge">Latihan Translation • Kids &amp; Basic Level</span>
+        <h1>Drilling Tenses: Family &amp; Shapes</h1>
+        <p class="subtitle">Terjemahkan 10 kalimat berikut ke dalam bahasa Inggris dengan memperhatikan penanda waktu (<em>Simple Present, Simple Past, Simple Future, &amp; Present Continuous</em>).</p>
+        
+        <div class="student-info">
+            <div class="input-group">
+                <label for="studentName">Nama Murid (Student's Name)</label>
+                <input type="text" id="studentName" placeholder="Tulis nama lengkap..." oninput="saveProgress()">
+            </div>
+            <div class="input-group">
+                <label for="classDate">Tanggal / Kelas (Date / Class)</label>
+                <input type="text" id="classDate" placeholder="Contoh: 20 Nov 2026 - Pre-Basic" oninput="saveProgress()">
+            </div>
+        </div>
+    </div>
+
+    <!-- Toolbar -->
+    <div class="toolbar">
+        <div class="progress-pill" id="progressText">Terjawab: 0 / 10 Soal</div>
+        <div class="btn-group">
+            <button class="btn-tutor" onclick="toggleTutorKeys()" id="toggleKeyBtn">🔑 Tampilkan Kunci Tutor</button>
+            <button class="btn-print" onclick="window.print()">🖨️ Cetak / PDF</button>
+            <button class="btn-reset" onclick="resetAll()">🔄 Reset Jawaban</button>
+        </div>
+    </div>
+
+    <!-- Questions Container -->
+    <div id="questionsList"></div>
+
+    <!-- Tutor Feedback Section -->
+    <div class="tutor-panel">
+        <h3>📝 Catatan &amp; Penilaian Tutor</h3>
+        <div class="tutor-grid">
+            <div class="input-group">
+                <label for="tutorScore">Skor / Nilai</label>
+                <input type="text" id="tutorScore" placeholder="Contoh: 90 / 100" oninput="saveProgress()">
+            </div>
+            <div class="input-group">
+                <label for="tutorNote">Feedback untuk Murid</label>
+                <input type="text" id="tutorNote" placeholder="Contoh: Bagus! Perhatikan kembali akhiran -s pada Simple Present." oninput="saveProgress()">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const exercises = [
+        {
+            id: 1,
+            indo: "Adik perempuanku menggambar sebuah lingkaran dan dua bintang di buku gambarnya setiap hari.",
+            tense: "Simple Present (+)",
+            key: "My younger sister draws a circle and two stars in her drawing book every day."
+        },
+        {
+            id: 2,
+            indo: "Kemarin, paman dan bibiku membeli meja bundar yang baru untuk ruang tamu.",
+            tense: "Simple Past (+)",
+            key: "Yesterday, my uncle and aunt bought a new round table for the living room."
+        },
+        {
+            id: 3,
+            indo: "Lihat! Keponakan laki-lakiku sedang bermain dengan sebuah bola dan kubus kayu di sudut ruangan.",
+            tense: "Present Continuous (+)",
+            key: "Look! My nephew is playing with a ball and a wooden cube in the corner of the room."
+        },
+        {
+            id: 4,
+            indo: "Besok, kakak laki-lakiku akan membuat layang-layang berbentuk belah ketupat untuk sepupuku.",
+            tense: "Simple Future (+)",
+            key: "Tomorrow, my older brother will make a diamond-shaped kite for my cousin."
+        },
+        {
+            id: 5,
+            indo: "Nenekku selalu membuat kue berbentuk hati untuk cucu-cucunya setiap akhir pekan.",
+            tense: "Simple Present (+)",
+            key: "My grandmother (grandma) always makes heart-shaped cakes for her grandchildren every weekend."
+        },
+        {
+            id: 6,
+            indo: "Tadi malam, ayah dan ibuku tidak menonton televisi karena mereka menemani bayi yang sedang tidur.",
+            tense: "Simple Past (- & +)",
+            key: "Last night, my father (dad) and mother (mom) did not (didn't) watch television because they accompanied the sleeping baby."
+        },
+        {
+            id: 7,
+            indo: "Apakah anak-anak kembar itu menggambar segitiga dan persegi panjang di papan tulis kemarin?",
+            tense: "Simple Past (?)",
+            key: "Did the twins draw a triangle and a rectangle on the whiteboard yesterday?"
+        },
+        {
+            id: 8,
+            indo: "Minggu depan, kami akan mengunjungi kakek dan nenek di desa bersama seluruh keluarga.",
+            tense: "Simple Future (+)",
+            key: "Next week, we will visit our grandparents in the village with the whole family."
+        },
+        {
+            id: 9,
+            indo: "Sebuah persegi memiliki empat sisi yang lurus, sedangkan sebuah telur berbentuk lonjong.",
+            tense: "Simple Present (+)",
+            key: "A square has four straight sides, while an egg is oval."
+        },
+        {
+            id: 10,
+            indo: "Keponakan perempuanku tidak sedang makan es krim di dalam kerucut sekarang, tetapi dia sedang menghitung titik-titik pada dadu.",
+            tense: "Present Continuous (- & +)",
+            key: "My niece is not (isn't) eating ice cream in a cone now, but she is counting the dots on the dice."
+        }
+    ];
+
+    const STORAGE_KEY = "drilling_tenses_family_shapes_v1";
+    let keysVisible = false;
+
+    function renderQuestions() {
+        const container = document.getElementById("questionsList");
+        container.innerHTML = exercises.map(item => `
+            <div class="question-card">
+                <div class="q-header">
+                    <div class="q-number">${item.id}</div>
+                    <div class="q-text">${item.indo}</div>
+                </div>
+                <textarea 
+                    class="answer-box" 
+                    id="ans_${item.id}" 
+                    placeholder="Ketik terjemahan bahasa Inggris di sini..." 
+                    oninput="handleInput()"
+                ></textarea>
+                <div class="tutor-key" id="key_${item.id}">
+                    <span class="tense-tag">${item.tense}</span>
+                    <div class="key-sentence">✅ ${item.key}</div>
+                </div>
+            </div>
+        `).join("");
+    }
+
+    function handleInput() {
+        updateProgress();
+        saveProgress();
+    }
+
+    function updateProgress() {
+        let answered = 0;
+        exercises.forEach(item => {
+            const val = document.getElementById(`ans_${item.id}`).value.trim();
+            if (val.length > 0) answered++;
+        });
+        document.getElementById("progressText").textContent = `Terjawab: ${answered} / ${exercises.length} Soal`;
+    }
+
+    function toggleTutorKeys() {
+        keysVisible = !keysVisible;
+        const btn = document.getElementById("toggleKeyBtn");
+        exercises.forEach(item => {
+            const el = document.getElementById(`key_${item.id}`);
+            if (keysVisible) {
+                el.classList.add("visible");
+            } else {
+                el.classList.remove("visible");
+            }
+        });
+        btn.textContent = keysVisible ? "🙈 Sembunyikan Kunci Tutor" : "🔑 Tampilkan Kunci Tutor";
+    }
+
+    function saveProgress() {
+        const data = {
+            studentName: document.getElementById("studentName").value,
+            classDate: document.getElementById("classDate").value,
+            tutorScore: document.getElementById("tutorScore").value,
+            tutorNote: document.getElementById("tutorNote").value,
+            answers: {}
+        };
+        exercises.forEach(item => {
+            data.answers[item.id] = document.getElementById(`ans_${item.id}`).value;
+        });
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+    }
+
+    function loadProgress() {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (!saved) return;
+        try {
+            const data = JSON.parse(saved);
+            if (data.studentName) document.getElementById("studentName").value = data.studentName;
+            if (data.classDate) document.getElementById("classDate").value = data.classDate;
+            if (data.tutorScore) document.getElementById("tutorScore").value = data.tutorScore;
+            if (data.tutorNote) document.getElementById("tutorNote").value = data.tutorNote;
+            if (data.answers) {
+                exercises.forEach(item => {
+                    if (data.answers[item.id] !== undefined) {
+                        document.getElementById(`ans_${item.id}`).value = data.answers[item.id];
+                    }
+                });
+            }
+            updateProgress();
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    function resetAll() {
+        if (!confirm("Hapus semua jawaban dan catatan yang sudah diisi?")) return;
+        localStorage.removeItem(STORAGE_KEY);
+        document.getElementById("studentName").value = "";
+        document.getElementById("classDate").value = "";
+        document.getElementById("tutorScore").value = "";
+        document.getElementById("tutorNote").value = "";
+        exercises.forEach(item => {
+            document.getElementById(`ans_${item.id}`).value = "";
+        });
+        updateProgress();
+    }
+
+    renderQuestions();
+    loadProgress();
+</script>
+
+</body>
+</html>
